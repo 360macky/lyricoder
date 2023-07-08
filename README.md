@@ -17,6 +17,20 @@
 
 Lyricoder is a script that generates a JSON file of song lyrics with timestamps. The script takes in a .mp3 file and the name of the song and outputs a JSON file with the lyrics and timestamps. The script uses [OpenAI Whisper](https://openai.com/research/whisper) to transcribe the song.
 
+```mermaid
+graph TB
+    A([Start]) --> B[Read Input Parameters]
+    B --> C[Open MP3 File]
+    C --> D(Call OpenAI Whisper API)
+    D --> E[Receive and Parse Response]
+    E --> F[Is response SRT Format?]
+    F -- Yes --> G[Convert SRT to JSON]
+    F -- No --> H[Print Error - Invalid response format]
+    G --> I[Export JSON to File]
+    I --> J[Print Success Message]
+    J --> K((End))
+```
+
 This script is useful for a music player app that could display the lyrics of the song as it is playing.
 
 ## 🌈 Installation
