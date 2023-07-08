@@ -13,19 +13,15 @@ args = parser.parse_args()
 
 def main():
     try:
-        # Define Whisper ASR API URL and headers
+        # Define Whisper ASR API URL
         api_url = "https://api.openai.com/v1/audio/transcriptions"
-        headers = {
-            "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}",
-            "Content-Type": "multipart/form-data"
-        }
         
         # Send POST request to Whisper API to transcribe song
         with open(args.input, 'rb') as audio_file:
             response = requests.post(
                 api_url, 
-                headers=headers, 
-                files={'file': audio_file}, 
+                headers={"Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}"}, 
+                files={'file': audio_file},
                 data={'model': 'whisper-1', 'response_format': 'srt'}
             )
 
